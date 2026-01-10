@@ -138,16 +138,18 @@
 
           <!-- Courses List -->
           <ul class="courses-list">
+            <% courses.forEach(function(course) { %>
             <li class="courses-item">
               <div class="courses-img-title">
                 <img src="/images/courses/PWA.jpg" alt="" class="courses-img" />
-                <h5 class="courses-name">دوره متخصص Next.js - (Off 10%)</h5>
+                <h5 class="courses-name"><%= course.title %></h5>
               </div>
               <div class="courses-btns">
                 <a href="" class="courses-btn-edit btn">ویرایش</a>
                 <a href="" class="courses-btn-delete btn">حذف</a>
               </div>
             </li>
+            <% })%>
           </ul>
           <!-- Courses List -->
         </section>

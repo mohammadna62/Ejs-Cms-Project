@@ -9,4 +9,4 @@ const schema = mongoose.Schema({
 
 const model = mongoose.model("Course", schema);
 
-module.exports = model
+module.exports = model;
