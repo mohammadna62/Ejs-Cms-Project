@@ -8,28 +8,30 @@ exports.create = async (req, res) => {
 
     await coursesModel.create({ title });
 
-    return res.status(201).json({
-      message: "Course created successfully :))",
-    });
+    return res.redirect("/courses");
   } catch (err) {
     return res.status(500).json({ message: "OoOps! UnKnown server error !!" });
   }
 };
 
 exports.getAll = async (req, res) => {
+  const courses = await coursesModel.find({});
+
   res.render("index", {
-    courses: [],
+    courses,
     title: "Courses Page",
   });
 };
 
 exports.remove = async (req, res) => {
-  try{
-    const {id}= req.params
-    const course = await coursesModel.find({_id:id})
-    return res.status(200).json(course)
-  }catch(err){
-    return res.status(404).json({message:"course not found"})
+  try {
+    const { id } = req.params;
+
+    await coursesModel.findOneAndDelete({ _id: id });
+
+    res.redirect("/courses");
+  } catch (err) {
+    return res.status(500).json({ message: "OoOps! UnKnown server error !!" });
   }
 };
 

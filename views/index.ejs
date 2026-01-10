@@ -39,31 +39,6 @@
     </div>
     <!----------------------------------End modal -------------------------------- -->
 
-    <!-- add new course modal-->
-    <!-- ! add visible class to be visible ! -->
-    <div class="modal-container" id="add-discounts-modal">
-      <div class="modal-content">
-        <!-- ! Edit Course  ! -->
-        <h1 class="modal-title">اعمال تخفیف همگانی</h1>
-        <form action="" class="edit-user-form">
-          <div class="input-field">
-            <span><i class="fa fa-tag"></i></span>
-            <input
-              type="text"
-              id=""
-              name=""
-              class="discount-input"
-              placeholder="میزان تخفیف (درصد)"
-              spellcheck="false"
-            />
-          </div>
-
-          <button type="submit" class="add-discount-btn update-btn btn">
-            اعمال تخفیف
-          </button>
-        </form>
-      </div>
-    </div>
     <!----------------------------------End modal -------------------------------- -->
 
     <div class="container">
@@ -130,7 +105,7 @@
         <section class="courses">
           <div class="courses-top">
             <h2 class="courses-title">دوره ها</h2>
-            <a href="#" class="btn add-discounts"> اعمال تخفیف همگانی </a>
+
             <a href="#" class="btn courses-btn-add-new-course"
               >اضافه کردن دوره جدید</a
             >
@@ -146,7 +121,11 @@
               </div>
               <div class="courses-btns">
                 <a href="" class="courses-btn-edit btn">ویرایش</a>
-                <a href="" class="courses-btn-delete btn">حذف</a>
+                <a
+                  href="/courses/remove/<%= course._id %>"
+                  class="courses-btn-delete btn"
+                  >حذف</a
+                >
               </div>
             </li>
             <% })%>
