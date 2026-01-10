@@ -372,6 +372,12 @@ a.active {
   box-shadow: #009cf05d 0px 8px 24px;
 }
 
+.error {
+  background-color: #ea868f;
+  color: #fff;
+  padding: 12px;
+}
+
 /* End Courses */
 
 @font-face {
