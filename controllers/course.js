@@ -42,14 +42,22 @@ exports.remove = async (req, res) => {
 };
 
 exports.edit = async (req, res) => {
-    try {
-    const { id } = req.params;
+  try {
     const { title } = req.body;
-
-    await coursesModel.findOneAndUpdate({ _id: id },{title});
-
+    const { id } = req.params;
+    await coursesModel.findOneAndUpdate({ _id: id }, { title });
     res.redirect("/courses");
   } catch (err) {
     return res.status(500).json({ message: "OoOps! UnKnown server error !!" });
   }
+};
+
+exports.getOne = async (req, res) => {
+  const { id } = req.params;
+  const course = await coursesModel.findOne({ _id: id });
+
+  res.render("edit", {
+    course,
+    title: "Course Edit Page",
+  });
 };

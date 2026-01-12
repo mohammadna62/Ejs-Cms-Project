@@ -6,6 +6,8 @@ const router = express.Router();
 router.post("/", coursesController.create);
 router.get("/", coursesController.getAll);
 router.get("/remove/:id", coursesController.remove);
-router.get("/edit/:id", coursesController.edit);
+router.get("/edit/:id", coursesController.getOne);
+router.post("/edit/:id", coursesController.edit);
+
 
 module.exports = router;

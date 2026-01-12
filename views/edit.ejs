@@ -11,34 +11,7 @@
     <title><%= title %></title>
   </head>
   <body>
-    <!---------------------------------- modal -------------------------------- -->
 
-    <!-- add new course modal-->
-    <!-- ! add visible class to be visible ! -->
-    <div class="modal-container" id="add-new-course-modal">
-      <div class="modal-content">
-        <!-- ! Edit Course  ! -->
-        <h1 class="modal-title">اضافه کردن دوره جدید</h1>
-        <form action="/courses" class="edit-user-form" method="post">
-          <div class="input-field">
-            <span><i class="fa fa-tag"></i></span>
-            <input
-              type="text"
-              name="title"
-              class="new-course-title"
-              placeholder="نام دوره"
-              spellcheck="false"
-            />
-          </div>
-
-          <button type="submit" class="add-course-btn update-btn btn">
-            ایجاد دوره
-          </button>
-        </form>
-      </div>
-    </div>
-    <!----------------------------------End modal -------------------------------- -->
-    <!---------------------------------- modal -------------------------------- -->
 
     <div class="container">
       <!-- Sidebar -->
@@ -100,38 +73,34 @@
         </nav>
         <!-- End Navbar -->
 
-        <!-- Courses -->
-        <section class="courses">
-          <div class="courses-top">
-            <h2 class="courses-title">دوره ها</h2>
-            <h1 class="error">اسم دوره تکراری می‌باشد</h1>
-            <a href="#" class="btn courses-btn-add-new-course"
-              >اضافه کردن دوره جدید</a
-            >
-          </div>
 
           <!-- Courses List -->
           <ul class="courses-list">
-            <% courses.forEach(function(course) { %>
+           
             <li class="courses-item">
               <div class="courses-img-title">
                 <img src="/images/courses/PWA.jpg" alt="" class="courses-img" />
                 <h5 class="courses-name"><%= course.title %></h5>
+                      <form action="/courses/edit/<%= course._id %>" class="edit-user-form" method="post">
+                          
+                    <input
+              type="text"
+              name="title"
+              class="new-course-title"
+              placeholder="عنوان جدید دوره "
+              spellcheck="false"
+            /><br>
+     
+               <button type="submit" class="add-course-btn update-btn btn">
+            ویرایش دوره
+          </button>
+        </form>
               </div>
               <div class="courses-btns">
-                <a
-                  href="/courses/edit/<%= course._id %>"
-                  class="btn courses-btn-edit"
-                  >ویرایش</a
-                >
-                <a
-                  href="/courses/remove/<%= course._id %>"
-                  class="courses-btn-delete btn"
-                  >حذف</a
-                >
+
               </div>
             </li>
-            <% })%>
+          
           </ul>
           <!-- Courses List -->
         </section>
