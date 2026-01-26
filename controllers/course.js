@@ -7,12 +7,12 @@ exports.create = async (req, res) => {
     const course = await coursesModel.findOne({ title });
 
     if (course) {
-      return res.redirect("/courses", {
-        error: "",
-      });
-    }
+      req.flash("error", "اسم این دوره تکراری است");
 
+      return res.redirect("/courses");
+    }
     await coursesModel.create({ title });
+    req.flash("success", "دوره با موفقیت ثبت گردید");
 
     return res.redirect("/courses");
   } catch (err) {

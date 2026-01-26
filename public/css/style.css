@@ -377,6 +377,11 @@ a.active {
   color: #fff;
   padding: 12px;
 }
+.success {
+  background-color: #41b300;
+  color: #fff;
+  padding: 12px;
+}
 
 /* End Courses */
 
