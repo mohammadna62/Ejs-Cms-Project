@@ -1,8 +1,15 @@
 const coursesModel = require("./../models/course");
+const {validationResult} = require('express-validator')
 
 exports.create = async (req, res) => {
   try {
     const { title } = req.body;
+    const result = validationResult(req)
+    
+    if(!result.isEmpty()){
+      req.flash("error",result.errors[0].msg)
+      return res.redirect("/courses")
+    }
 
     const course = await coursesModel.findOne({ title });
 
@@ -16,7 +23,7 @@ exports.create = async (req, res) => {
 
     return res.redirect("/courses");
   } catch (err) {
-    return res.status(500).json({ message: "OoOps! UnKnown server error !!" });
+    return res.status(500).json({ message: "OoOps! UnKnown server error !!" ,err});
   }
 };
 
