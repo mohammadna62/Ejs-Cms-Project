@@ -1,17 +1,12 @@
 const express = require("express");
 const { userValidator } = require("./../validators/user.validator");
-const { validationResult } = require("express-validator");
+const validate = require("../middlewares/validate");
+
 
 const router = express.Router();
 
-router.post("/signup", userValidator(), (req, res) => {
-  const result = validationResult(req);
-  if (!result.isEmpty()) {
-    const obj = {};
-    result.errors.forEach((error) => {
-      obj[error.path] = error.msg;
-    });
-  }
+router.post("/signup", userValidator(),validate, (req, res) => {
+  
   return res.json({ message: "User Registered Successfully" });
 });
 
