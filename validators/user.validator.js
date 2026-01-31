@@ -1,5 +1,6 @@
 const { body } = require("express-validator");
 const Joi = require("joi");
+const Schema = require("validate")
 // Express Validator
 const userValidator = () => {
   return [
@@ -46,22 +47,42 @@ const userValidator = () => {
     }),
   ];
 };
+// Joi Validator
+// const userValidatorSchema = Joi.object({
+//   firstname: Joi.string().lowercase().min(3).max(15).required(),
+//   lastname: Joi.string().lowercase().min(3).max(15).required(),
+//   username: Joi.string().min(8).max(24).required(),
+//   signupMethod: Joi.string().required().valid("email", "phone"),
+//   email: Joi.string()
+//     .email()
+//     .min(10)
+//     .max(40)
+//     .when("signupMethod", { is: "email", then: Joi.required() }),
+//   phone: Joi.string()
+//     .pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/)
+//     .when("signupMethod", { is: "phone", then: Joi.required() }),
+//   password: Joi.string().min(8).max(24).required(),
+//   confirmPassword: Joi.ref("password"),
+// });
 
-const userValidatorSchema = Joi.object({
-  firstname: Joi.string().lowercase().min(3).max(15).required(),
-  lastname: Joi.string().lowercase().min(3).max(15).required(),
-  username: Joi.string().min(8).max(24).required(),
-  signupMethod: Joi.string().required().valid("email", "phone"),
-  email: Joi.string()
-    .email()
-    .min(10)
-    .max(40)
-    .when("signupMethod", { is: "email", then: Joi.required() }),
-  phone: Joi.string()
-    .pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/)
-    .when("signupMethod", { is: "phone", then: Joi.required() }),
-  password: Joi.string().min(8).max(24).required(),
-  confirmPassword: Joi.ref("password"),
-});
 
-module.exports = { userValidator, userValidatorSchema };
+
+
+const signUpSchema = new Schema({
+  firstname:{
+    type :String,
+    required : true,
+    length : {min:3 , max:32},
+  },
+  lastname:{
+    type :String,
+    required : true,
+    length : {min:3 , max:32},
+  },
+  username:{
+    type :String,
+    required : true,
+    length : {min:3 , max:32},
+  },
+})
+module.exports = { userValidator, signUpSchema };
